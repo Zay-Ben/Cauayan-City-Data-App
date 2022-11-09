@@ -18,7 +18,7 @@ if 'gdf_geojson' in st.session_state:
         i_options.remove('Total no. of Population')
         
     i = st.selectbox(label = 'Which of the columns are you interested in?',
-                     options = df.columns[2:])
+                     options = i_options)
 
     if i is not None:
 
