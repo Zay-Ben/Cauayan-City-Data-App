@@ -13,9 +13,9 @@ if 'gdf_geojson' in st.session_state:
     i_options = list(df.columns[2:])
     
     if 'Total no. of Households' in i_options:
-        i_options.remove('Total no. of Households')
+        i_options = i_options.remove('Total no. of Households')
     if 'Total no. of Population' in i_options:
-        i_options.remove('Total no. of Population')
+        i_options = i_options.remove('Total no. of Population')
         
     i = st.selectbox(label = 'Which of the columns are you interested in?',
                      options = i_options)
