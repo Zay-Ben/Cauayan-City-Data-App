@@ -99,7 +99,7 @@ if 'gdf_geojson' in st.session_state:
 
         #
 
-        st.subheader('How it is computed?')
+        st.subheader('How it is Computed?')
 
         st.code(body = '''
 df['As % of Total no. of Households'] = round(df[Column] / df['Total no. of Households * 100, 2)
