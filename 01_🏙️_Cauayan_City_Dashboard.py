@@ -1,5 +1,7 @@
 import streamlit as st
 
+st.set_page_config(page_title = 'Cauayan City Dashboard')
+
 st.title('Cauayan City Dashboard')
 
 st.caption('Made by Ronald Benz M. Zhang')
