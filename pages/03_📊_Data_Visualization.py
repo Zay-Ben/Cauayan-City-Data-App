@@ -27,7 +27,7 @@ if 'gdf_geojson' in st.session_state:
                                  i + ': %{customdata[1]}'])
         elif j == lst[1]:
             dv['Total no. of Households'] = gdf['Total no. of Households']
-            dv[j] = round(df[i] / dv['Total no. of Households'] * 100, 2)
+            dv[j] = round(df[i] / sum(dv['Total no. of Households']) * 100, 2)
             dv_hd = ['Barangay', i, 'Total no. of Households', j]
             dv_ht = '<br>'.join(['<b>%{customdata[0]}</b>',
                                  i + ': %{customdata[1]}',
@@ -35,7 +35,7 @@ if 'gdf_geojson' in st.session_state:
                                  j + ': %{customdata[3]}'])
         elif j == lst[2]:
             dv['Total no. of Population'] = gdf['Total no. of Population']
-            dv[j] = round(df[i] / dv['Total no. of Population'] * 100, 2)
+            dv[j] = round(df[i] / sum(dv['Total no. of Population']) * 100, 2)
             dv_hd = ['Barangay', i, 'Total no. of Population', j]
             dv_ht = '<br>'.join(['<b>%{customdata[0]}</b>',
                                  i + ': %{customdata[1]}',
@@ -95,8 +95,8 @@ if 'gdf_geojson' in st.session_state:
         st.subheader('How it is Computed?')
 
         st.code(body = '''
-df['As % of Total no. of Households'] = round(df[Column] / df['Total no. of Households * 100, 2)
-df['As % of Total no. of Population'] = round(df[Column] / Total no. of Population * 100, 2)
+df['As % of Total no. of Households'] = round(df[Column] / sum(df['Total no. of Households']) * 100, 2)
+df['As % of Total no. of Population'] = round(df[Column] / sum(df['Total no. of Population']) * 100, 2)
 df['As % of ' + Column] = round(df[Column] / sum(df[Column]) * 100, 2)
         ''',
                 language = 'python')
