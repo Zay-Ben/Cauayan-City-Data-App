@@ -54,10 +54,12 @@ if 'gdf_geojson' in st.session_state:
         
         if sort == 'Sort in ascending order':
             dv_10 = dv.sort_values(by = j, ascending = False).tail(10)
+            k = 'lowest'
         else:
             dv_10 = dv.sort_values(by = j, ascending = False).head(10)
+            k = 'highest'
             
-        st.subheader('Which barangay has the highest or lowest ' + j + '?')
+        st.subheader('Which barangay has the {0} {1}?'.format(k, j))
         
         # Choropleth Map
         
@@ -67,7 +69,7 @@ if 'gdf_geojson' in st.session_state:
                            featureidkey = 'properties.Barangay',
                            color = j,
                            hover_data = dv_hd,
-                           color_continuous_scale = px.colors.diverging.RdYlGn,
+                           color_continuous_scale = px.colors.sequential.Plasma,
                            center = {'lat' : dv.centroid.x.mean(), 'lon' : dv.centroid.y.mean()},
                            fitbounds = 'locations',
                            basemap_visible = False,
@@ -88,7 +90,7 @@ if 'gdf_geojson' in st.session_state:
                     color = j,
                     hover_data = ['Barangay', j],
                     text = j,
-                    color_continuous_scale = px.colors.diverging.RdYlGn,
+                    color_continuous_scale = px.colors.sequential.Plasma,
                     width = 800,
                     height = 400)
 
