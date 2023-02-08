@@ -77,9 +77,9 @@ if 'gdf_geojson' in st.session_state:
                         label_visibility = 'hidden')
         
         if sort == 'See the top 10 barangays':
-            dv_10 = dv.sort_values(by = j, ascending = False).tail(10)
-        else:
             dv_10 = dv.sort_values(by = j, ascending = False).head(10)
+        else:
+            dv_10 = dv.sort_values(by = j, ascending = False).tail(10)
             
         bc = px.bar(data_frame = dv_10,
                     x = 'Barangay',
