@@ -67,7 +67,7 @@ if 'gdf_geojson' in st.session_state:
                            featureidkey = 'properties.Barangay',
                            color = j,
                            hover_data = dv_hd,
-                           color_continuous_sequence = px.colors.diverging.RdYlGn,
+                           color_continuous_scale = px.colors.diverging.RdYlGn,
                            center = {'lat' : dv.centroid.x.mean(), 'lon' : dv.centroid.y.mean()},
                            fitbounds = 'locations',
                            basemap_visible = False,
@@ -88,7 +88,7 @@ if 'gdf_geojson' in st.session_state:
                     color = j,
                     hover_data = ['Barangay', j],
                     text = j,
-                    color_continuous_sequence = px.colors.diverging.RdYlGn,
+                    color_continuous_scale = px.colors.diverging.RdYlGn,
                     width = 800,
                     height = 400)
 
