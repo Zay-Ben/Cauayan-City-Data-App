@@ -49,7 +49,9 @@ if 'gdf_geojson' in st.session_state:
                                  j + ': %{customdata[2]}'])
             
         # Choropleth Map
-                
+        
+        st.subheader('Choropleth Map')
+        
         cm = px.choropleth(data_frame = dv,
                            locations = 'Barangay',
                            geojson = gdf_geojson,
@@ -70,6 +72,8 @@ if 'gdf_geojson' in st.session_state:
         st.plotly_chart(cm)
         
         # Bar Chart
+        
+        st.subheader('Bar Chart')
         
         sort = st.radio(label = '',
                         options = ['See the top 10 barangays', 'See the bottom 10 barangays'],
