@@ -19,10 +19,20 @@ if 'gdf_geojson' in st.session_state:
     with col1:
         barangay1 = st.selectbox(label = 'Select Barangay 1:', options = df['Barangay'])
         dv1 = dv.loc[barangay1][proportions]
-        st.plotly_chart(px.bar_polar(data_frame = dv1, r = dv1.values, theta = dv1.index))
+        st.plotly_chart(px.bar_polar(data_frame = dv1,
+                                     r = dv1.values,
+                                     theta = dv1.index,
+                                     color_continuous_scale = px.colors.sequential.Plasma,
+                                     width = 300,
+                                     height = 300))
         
     with col2:
         barangay2 = st.selectbox(label = 'Select Barangay 2:', options = df['Barangay'])
         dv2 = dv.loc[barangay1][proportions]
-        st.plotly_chart(px.bar_polar(data_frame = dv2, r = dv2.values, theta = dv2.index))
+        st.plotly_chart(px.bar_polar(data_frame = dv2,
+                                     r = dv2.values,
+                                     theta = dv2.index,
+                                     color_continuous_scale = px.colors.sequential.Plasma,
+                                     width = 300,
+                                     height = 300))
         
