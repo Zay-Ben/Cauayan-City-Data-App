@@ -1,7 +1,7 @@
 import streamlit as st
 import plotly.express as px
 
-st.header('Data Visualization')
+st.header('Compare Barangays')
 
 if 'gdf_geojson' in st.session_state:
     
@@ -12,30 +12,17 @@ if 'gdf_geojson' in st.session_state:
     
     columns = [column for column in df.columns if "Proportion" in column]
     
-    proportions = st.multiselect(label = 'Which of the columns are you interested in?',
-                                 options = columns)
+    proportions = st.multiselect(label = 'Which of the columns are you interested in?', options = columns)
     
     col1, col2 = st.columns(2)
     
     with col1:
-        
-        barangay1 = st.selectbox(label = 'Select Barangay 1:',
-                                 options = df['Barangay'])
-        
+        barangay1 = st.selectbox(label = 'Select Barangay 1:', options = df['Barangay'])
         dv1 = dv.loc[barangay1][proportions]
-        
-        st.plot(px.bar_polar(data_frame = dv1,
-                             r = dv1.values,
-                             theta = dv1.index))
+        st.plot_chart(px.bar_polar(data_frame = dv1, r = dv1.values, theta = dv1.index))
         
     with col2:
-        
-        barangay2 = st.selectbox(label = 'Select Barangay 2:',
-                                 options = df['Barangay'])
-        
+        barangay2 = st.selectbox(label = 'Select Barangay 2:', options = df['Barangay'])
         dv2 = dv.loc[barangay1][proportions]
-        
-        st.plot(px.bar_polar(data_frame = dv2,
-                             r = dv2.values,
-                             theta = dv2.index))
+        st.ploty_chart(px.bar_polar(data_frame = dv2, r = dv2.values, theta = dv2.index))
         
