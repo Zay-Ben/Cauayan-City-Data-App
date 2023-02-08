@@ -60,7 +60,6 @@ if 'gdf_geojson' in st.session_state:
                            center = {'lat' : dv.centroid.x.mean(), 'lon' : dv.centroid.y.mean()},
                            fitbounds = 'locations',
                            basemap_visible = False,
-                           title = j + ' of the Barangays in the Cauayan City',
                            width = 800,
                            height = 400)
 
@@ -79,10 +78,8 @@ if 'gdf_geojson' in st.session_state:
         
         if sort == 'See the top 10 barangays':
             dv_10 = dv.sort_values(by = j, ascending = False).tail(10)
-            k = 'Top'
         else:
             dv_10 = dv.sort_values(by = j, ascending = False).head(10)
-            k = 'Bottom'
             
         bc = px.bar(data_frame = dv_10,
                     x = 'Barangay',
@@ -91,7 +88,6 @@ if 'gdf_geojson' in st.session_state:
                     hover_data = ['Barangay', j],
                     text = j,
                     color_continuous_scale = px.colors.sequential.Plasma,
-                    title = k + ' 10 Barangays by ' + j,
                     width = 800,
                     height = 400)
 
