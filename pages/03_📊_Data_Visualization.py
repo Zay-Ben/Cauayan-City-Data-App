@@ -73,7 +73,7 @@ if 'gdf_geojson' in st.session_state:
         
         sort = st.radio(label = '',
                         options = ['See the top 10 barangays', 'See the bottom 10 barangays'],
-                        index = 1,
+                        index = 0,
                         label_visibility = 'hidden')
         
         if sort == 'See the top 10 barangays':
