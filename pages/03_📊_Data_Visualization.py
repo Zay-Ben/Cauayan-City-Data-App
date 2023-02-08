@@ -48,7 +48,14 @@ if 'gdf_geojson' in st.session_state:
                                  i + ': %{customdata[1]}',
                                  j + ': %{customdata[2]}'])
             
-        st.subheader('Which barangay has the highest or the lowest ' + j + '?')
+        sort = st.radio(label = 'How would you like to sort the data?', options = ['Sort in ascending order', 'Sort in descending order'])
+        
+        if sort is 'Sort in ascending order':
+            dv_10 = dv.sort_values(by = j).head(10)
+        else:
+            dv_10 = dv.sort_values(by = j).tail(10)
+            
+        st.subheader('Which barangay has the highest or lowest ' + j + '?')
         
         # Choropleth Map
         
@@ -58,7 +65,7 @@ if 'gdf_geojson' in st.session_state:
                            featureidkey = 'properties.Barangay',
                            color = j,
                            hover_data = dv_hd,
-                           color_discrete_sequence = px.colors.sequential.Plasma_r,
+                           color_continuous_sequence = px.colors.diverging.RdYlGn,
                            center = {'lat' : dv.centroid.x.mean(), 'lon' : dv.centroid.y.mean()},
                            fitbounds = 'locations',
                            basemap_visible = False,
@@ -70,25 +77,16 @@ if 'gdf_geojson' in st.session_state:
         cm.update_traces(hovertemplate = dv_ht)
 
         st.plotly_chart(cm)
-
+        
         # Bar Chart
         
-        sort = st.radio(label = 'How would you like to sort the data?', options = ['Sort in ascending order', 'Sort in descending order'])
-        
-        if sort is 'Sort in ascending order':
-            sort = True
-        else:
-            sort = False
-        
-        dv_10 = dv.sort_values(by = j, ascending = sort).head(10)
-
         bc = px.bar(data_frame = dv_10,
                     x = 'Barangay',
                     y = j,
                     color = j,
                     hover_data = ['Barangay', j],
                     text = j,
-                    color_discrete_sequence = px.colors.sequential.Plasma_r,
+                    color_continuous_sequence = px.colors.diverging.RdYlGn,
                     width = 800,
                     height = 400)
 
