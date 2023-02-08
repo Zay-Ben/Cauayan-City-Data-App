@@ -13,4 +13,15 @@ if 'gdf_geojson' in st.session_state:
     columns = [column for column in df.columns if "Proportion" in column]
     
     proportions = st.multiselect(label = 'Which of the columns are you interested in?',
-                                 options = proportions)
+                                 options = columns)
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        barangay1 = st.selectbox(label = 'Select Barangay 1:',
+                                 options = df.index)
+        
+    with col2:
+        barangay2 = st.selectbox(label = 'Select Barangay 2:',
+                                 options = df.index)
+        
