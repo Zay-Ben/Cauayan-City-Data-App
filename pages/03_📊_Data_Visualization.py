@@ -48,9 +48,11 @@ if 'gdf_geojson' in st.session_state:
                                  i + ': %{customdata[1]}',
                                  j + ': %{customdata[2]}'])
             
-        sort = st.radio(label = 'How would you like to sort the data?', options = ['Sort in ascending order', 'Sort in descending order'])
+        sort = st.radio(label = 'How would you like to sort the data?',
+                        options = ['Sort in ascending order', 'Sort in descending order'],
+                        index = 1)
         
-        if sort is 'Sort in ascending order':
+        if sort == 'Sort in ascending order':
             dv_10 = dv.sort_values(by = j).head(10)
         else:
             dv_10 = dv.sort_values(by = j).tail(10)
