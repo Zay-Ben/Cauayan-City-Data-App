@@ -53,9 +53,9 @@ if 'gdf_geojson' in st.session_state:
                         index = 1)
         
         if sort == 'Sort in ascending order':
-            dv_10 = dv.sort_values(by = j).head(10)
+            dv_10 = dv.sort_values(by = j, ascending = False).tail(10)
         else:
-            dv_10 = dv.sort_values(by = j).tail(10)
+            dv_10 = dv.sort_values(by = j, ascending = False).head(10)
             
         st.subheader('Which barangay has the highest or lowest ' + j + '?')
         
