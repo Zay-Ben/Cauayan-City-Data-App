@@ -15,7 +15,7 @@ if 'gdf_geojson' in st.session_state:
 
     if i is not None:
 
-        lst = [i, 'As % of Total no. of Households', 'As % of Total no. of Population', 'As % of ' + i]
+        lst = [i, '% of Total no. of Households', '% of Total no. of Population', '% of ' + i]
 
         j = st.radio(label = 'How would you like to visualize the data?',
                      options = lst,
@@ -48,20 +48,9 @@ if 'gdf_geojson' in st.session_state:
                                  i + ': %{customdata[1]}',
                                  j + ': %{customdata[2]}'])
             
-        sort = st.radio(label = 'How would you like to sort the data?',
-                        options = ['Sort in ascending order', 'Sort in descending order'],
-                        index = 1)
-        
-        if sort == 'Sort in ascending order':
-            dv_10 = dv.sort_values(by = j, ascending = False).tail(10)
-            k = 'lowest'
-        else:
-            dv_10 = dv.sort_values(by = j, ascending = False).head(10)
-            k = 'highest'
-            
-        st.subheader('Which barangay has the {0} {1}?'.format(k, j))
-        
         # Choropleth Map
+        
+        st.subheader(j + ' of the Barangays in the Cauayan City')
         
         cm = px.choropleth(data_frame = dv,
                            locations = 'Barangay',
@@ -84,6 +73,20 @@ if 'gdf_geojson' in st.session_state:
         
         # Bar Chart
         
+        sort = st.radio(label = '',
+                        options = ['Sort from lowest to highest', 'Sort from highest to lowest'],
+                        index = 1,
+                        label_visibility = 'hidden')
+        
+        if sort == 'Sort in ascending order':
+            dv_10 = dv.sort_values(by = j, ascending = False).tail(10)
+            k = 'Top'
+        else:
+            dv_10 = dv.sort_values(by = j, ascending = False).head(10)
+            k = 'Bottom'
+            
+        st.subheader(k + ' 10 Barangays by ' + j)
+        
         bc = px.bar(data_frame = dv_10,
                     x = 'Barangay',
                     y = j,
@@ -104,9 +107,9 @@ if 'gdf_geojson' in st.session_state:
         st.subheader('How it\'s computed?')
 
         st.code(body = '''
-df['As % of Total no. of Households'] = round(df[Column] / sum(df['Total no. of Households']) * 100, 2)
-df['As % of Total no. of Population'] = round(df[Column] / sum(df['Total no. of Population']) * 100, 2)
-df['As % of ' + Column] = round(df[Column] / sum(df[Column]) * 100, 2)
+df['% of Total no. of Households'] = round(df[Column] / sum(df['Total no. of Households']) * 100, 2)
+df['% of Total no. of Population'] = round(df[Column] / sum(df['Total no. of Population']) * 100, 2)
+df['% of ' + Column] = round(df[Column] / sum(df[Column]) * 100, 2)
         ''',
                 language = 'python')
         
