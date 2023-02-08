@@ -47,17 +47,18 @@ if 'gdf_geojson' in st.session_state:
             dv_ht = '<br>'.join(['<b>%{customdata[0]}</b>',
                                  i + ': %{customdata[1]}',
                                  j + ': %{customdata[2]}'])
-
+            
+        st.subheader('Which barangay has the highest or the lowest ' + j + '?')
+        
         # Choropleth Map
-
-        st.subheader('Choropleth Map')
-
+        
         cm = px.choropleth(data_frame = dv,
                            locations = 'Barangay',
                            geojson = gdf_geojson,
                            featureidkey = 'properties.Barangay',
                            color = j,
                            hover_data = dv_hd,
+                           color_discrete_sequence = px.colors.sequential.Plasma_r,
                            center = {'lat' : dv.centroid.x.mean(), 'lon' : dv.centroid.y.mean()},
                            fitbounds = 'locations',
                            basemap_visible = False,
@@ -71,10 +72,15 @@ if 'gdf_geojson' in st.session_state:
         st.plotly_chart(cm)
 
         # Bar Chart
-
-        st.subheader('Bar Chart')
-
-        dv_10 = dv.sort_values(by = j, ascending = False).head(10)
+        
+        sort = st.radio(label = 'How would you like to sort the data?', options = ['Sort in ascending order', 'Sort in descending order'])
+        
+        if sort is 'Sort in ascending order':
+            sort = True
+        else:
+            sort = False
+        
+        dv_10 = dv.sort_values(by = j, ascending = sort).head(10)
 
         bc = px.bar(data_frame = dv_10,
                     x = 'Barangay',
@@ -82,6 +88,7 @@ if 'gdf_geojson' in st.session_state:
                     color = j,
                     hover_data = ['Barangay', j],
                     text = j,
+                    color_discrete_sequence = px.colors.sequential.Plasma_r,
                     width = 800,
                     height = 400)
 
@@ -92,7 +99,7 @@ if 'gdf_geojson' in st.session_state:
 
         #
 
-        st.subheader('How it is Computed?')
+        st.subheader('How it\'s computed?')
 
         st.code(body = '''
 df['As % of Total no. of Households'] = round(df[Column] / sum(df['Total no. of Households']) * 100, 2)
