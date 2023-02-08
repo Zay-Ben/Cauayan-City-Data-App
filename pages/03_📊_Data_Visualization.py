@@ -91,7 +91,7 @@ if 'gdf_geojson' in st.session_state:
                     hover_data = ['Barangay', j],
                     text = j,
                     color_continuous_scale = px.colors.sequential.Plasma,
-                    title = k + ' 10 Barangays by ' + j.
+                    title = k + ' 10 Barangays by ' + j,
                     width = 800,
                     height = 400)
 
