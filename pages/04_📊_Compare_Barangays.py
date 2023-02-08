@@ -19,9 +19,17 @@ if 'gdf_geojson' in st.session_state:
     
     with col1:
         barangay1 = st.selectbox(label = 'Select Barangay 1:',
-                                 options = df.index)
+                                 options = df['Barangay'])
+        b1 = df.loc[barangay1][proportions]
+        st.plot(px.bar_polar(data_frame = b1,
+                             r = b1.values,
+                             theta = b1.index))
         
     with col2:
         barangay2 = st.selectbox(label = 'Select Barangay 2:',
-                                 options = df.index)
+                                 options = df['Barangay'])
+        b2 = df.loc[barangay1][proportions]
+        st.plot(px.bar_polar(data_frame = b2,
+                             r = b2.values,
+                             theta = b2.index))
         
