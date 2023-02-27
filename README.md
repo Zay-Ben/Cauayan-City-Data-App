@@ -9,3 +9,7 @@ This app comes with [a Jupyter notebook](https://github.com/Zay-Ben/Cauayan-City
 * [CBMS 2016 RESULTS](https://sparta.dap.edu.ph/sgp/data-bank/50) from [SPARTA Data Bank](https://sparta.dap.edu.ph/sgp/data-bank).
 * [Entrepreneurial activity per Barangay (2016-2017)](https://sparta.dap.edu.ph/sgp/data-bank/51) from [SPARTA Data Bank](https://sparta.dap.edu.ph/sgp/data-bank).
 * [No. of OFWs per Barangay (2016-2017)](https://sparta.dap.edu.ph/sgp/data-bank/54) from [SPARTA Data Bank](https://sparta.dap.edu.ph/sgp/data-bank).
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
