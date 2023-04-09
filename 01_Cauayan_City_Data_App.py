@@ -3,9 +3,7 @@ import json
 import geopandas as gpd
 import streamlit as st
 
-st.title('Cauayan City Dashboard')
-
-st.header('Data Table')
+st.title('Cauayan City Data App')
 
 #
 
