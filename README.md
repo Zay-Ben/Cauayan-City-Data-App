@@ -1,4 +1,4 @@
-# Cauayan-City-Data-App
+# Cauayan City Data App
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://cauayan-city.streamlit.app/)
 
