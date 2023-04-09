@@ -1,7 +1,7 @@
 import streamlit as st
 import plotly.express as px
 
-st.header('Data Visualization')
+st.title('Data Visualization')
 
 if 'gdf_geojson' in st.session_state:
     
